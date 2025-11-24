@@ -5,9 +5,9 @@ name: CI via Workflow Reutilizável (correção)
 
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
   pull_request:
 
 jobs:
   login:
-    uses: Honorio15/login-workflow/.github/workflows/login.yml@master
+    uses: Honorio15/login-workflow/.github/workflows/login.yml@main
