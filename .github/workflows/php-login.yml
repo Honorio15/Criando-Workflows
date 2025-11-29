@@ -1,4 +1,4 @@
-name: CI PHP Login
+name: PHP CI Workflow
 
 on:
   push:
@@ -7,7 +7,26 @@ on:
     branches: [ main ]
 
 jobs:
-  call-reusable-workflow:
-    uses: Honorio15/login.php/.github/workflows/login.yml@main
-    with:
-      php-version: '8.2'
+  validate-php:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.2'
+        
+    - name: Validate PHP syntax
+      run: |
+        echo "🔍 Validando arquivos PHP..."
+        php -l index.php
+        echo "✅ Sintaxe PHP válida!"
+        
+    - name: List files
+      run: ls -la
+      
+    - name: Success
+      run: echo "🎉 Workflow executado com sucesso!"
